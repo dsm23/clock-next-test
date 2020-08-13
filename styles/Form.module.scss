@@ -1,0 +1,45 @@
+@use 'colors';
+@use 'base';
+
+.form {
+  background-color: #edf2f7;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.label {
+  color: colors.$txt-color;
+  font-weight: 600;
+}
+
+.labelSpacing {
+  margin: 1rem 0 0.75rem;
+}
+
+.input {
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  border-color: #553c9a;
+  &:hover {
+    border-color: #805ad5;
+  }
+}
+
+.inputSpacing {
+  margin: 1rem 0;
+}
+
+.btn {
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  background-color: #553c9a;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  @extend %elevation;
+  &:hover {
+    background-color: #805ad5;
+  }
+}

@@ -1,0 +1,72 @@
+@use 'colors';
+@use 'base';
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 2rem 0;
+  border-radius: 0.5rem;
+  @extend %elevation;
+}
+
+.details {
+  display: flex;
+  color: colors.$txt-color;
+  padding: 0.25rem 0;
+}
+
+.titles {
+  flex-basis: 25%;
+  color: colors.$heading-color;
+  font-weight: 600;
+  text-align: right;
+  padding-right: 0.5rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.data {
+  flex-basis: 75%;
+  font-family: serif;
+}
+
+.image {
+  // aspect-ratio: 9 / 16;
+  height: 20rem;
+  flex-basis: 35%;
+  object-fit: contain;
+}
+
+.textSection {
+  padding: 1rem;
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% {  transform: rotate(359deg); }
+}
+
+.loading {
+  animation: spin 2s linear infinite;
+  background-color: #edf2f7;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+
+.sort { 
+  display: inline;
+  border: none;
+}
+
+.active {
+  border: 1px solid colors.$txt-color;
+  border-radius: 0.25rem;
+}
