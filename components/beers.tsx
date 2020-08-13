@@ -14,17 +14,20 @@ import { Beer } from '../types';
 
 interface Props {
   criteria: string;
+  initialData: Beer[];
 }
 
-const Beers: FunctionComponent<Props> = ({ criteria }) => {
+const API = 'https://api.punkapi.com/v2/beers';
+
+const Beers: FunctionComponent<Props> = ({ criteria, initialData }) => {
   const [sortUp, setSort] = useState<boolean | undefined>(undefined);
 
-  const { data, error } = useSWR<Beer[]>(
-    Boolean(criteria)
-      ? `https://api.punkapi.com/v2/beers?beer_name=${criteria}`
-      : 'https://api.punkapi.com/v2/beers',
-    fetcher,
-  );
+  const url = `${API}${criteria ? `?beer_name=${criteria}` : ''}`;
+
+  const { data, error } = useSWR<Beer[]>(url, fetcher, {
+    // hack https://github.com/vercel/swr/issues/284
+    initialData: url === API ? initialData : undefined,
+  });
 
   const beers: Beer[] = useMemo(() => {
     if (data) {
@@ -47,10 +50,16 @@ const Beers: FunctionComponent<Props> = ({ criteria }) => {
   return (
     <>
       <div>
-        <button className={styles.sort} onClick={handleSortUp}>
+        <button
+          className={clsx([styles.sort, sortUp && styles.active])}
+          onClick={handleSortUp}
+        >
           <SortUp />
         </button>
-        <button className={styles.sort} onClick={handleSortDown}>
+        <button
+          className={clsx([styles.sort, sortUp === false && styles.active])}
+          onClick={handleSortDown}
+        >
           <SortDown />
         </button>
       </div>

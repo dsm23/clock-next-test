@@ -64,9 +64,10 @@
 .sort { 
   display: inline;
   border: none;
+  padding: 0 0.5rem;
 }
 
 .active {
-  border: 1px solid colors.$txt-color;
+  border: 0.125rem solid colors.$txt-color;
   border-radius: 0.25rem;
 }
